@@ -1,19 +1,19 @@
 body {
-    background: rgb(179,254,210);
-    background: radial-gradient(circle, rgba(179,254,210,1) 0%, rgba(156,189,228,1) 100%);
+    background: rgb(173,225,255);
+    background: radial-gradient(circle, rgba(173,225,255,1) 50%, rgba(255,255,255,1) 100%);
 }
-.err {
+.error {
     font-size: 120px;
     text-align: center;
-    color: white;
+    color: #38B6FF;
     font-family:sans-serif;
-    margin-top: 15rem;
+    margin-top: 10rem;
 }
 
-.try {
+.allowed {
     font-size: 30px;
     text-align: center;
-    color: #343b43;
+    color: black;
     font-family:sans-serif;
 }
 
@@ -21,6 +21,16 @@ body {
     margin-top: -0.5rem;
     font-size: 50px;
     text-align: center;
-    color:#343b43;
+    color: black;
     font-family:sans-serif;
 }
+
+.logo {
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
