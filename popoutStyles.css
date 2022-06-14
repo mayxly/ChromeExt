@@ -29,3 +29,6 @@ h4 {
     font-size: 1rem;
     cursor: pointer;
 }
+.new-item {
+    display: none;
+}

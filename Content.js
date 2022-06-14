@@ -1,3 +1,60 @@
+
+// TODO LIST MANAGER
+
+const items = [{"item":"Item One", "status": 0},
+                {"item":"Item  Two", "status": 1}];
+
+
+const itemsStr = JSON.stringify(items);
+console.log(itemsStr);
+
+//Get item from local storage
+function fetchItems() {
+    const itemsList = document.querySelector('ul.todo-items');
+    itemsList.innerHTML = '';
+    var newItemHTML = '';
+    try{
+        var items = localStorage.getItem('todo-items');
+        var itemsArr = JSON.parse(items);
+
+        for (var i = 0; i < itemsArr.length; i++) {
+            var status = '';
+            if(itemsArr[i].status == 1) {
+                status = 'class="done"';
+            }
+            newItemHTML += `<li data-itemindex="${i}">
+            <span class="item">${itemsArr[i].item}</span>
+            <div><span>&#10004;&#65039;</span>
+            <span>&#128465;</span></div>
+            </li>`
+            itemsArr[i]
+        }
+        itemsList.innerHTML = newItemHTML;
+    } catch(e) {
+
+    }
+    
+}
+
+//Store item in local storage
+function saveItems(obj) {
+    var string = JSON.stringify(obj);
+    localStorage.setItem('todo-items', string);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// SOCIAL MEDIA BLOCKER
+
 const generateHTML = (pageName) => {
     return `
     <div class="error">
