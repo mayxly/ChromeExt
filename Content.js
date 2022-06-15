@@ -1,72 +1,73 @@
 
 // TODO LIST MANAGER
 
-
-//Create a new item
-document.querySelector('.create-todo').addEventListener('click', function(){
+//Click make todo item button
+document.querySelector('.create-todo').addEventListener('click',function() {
     document.querySelector('.new-item').style.display='block';
-});
-
-
-document.querySelector('.new-item button').addEventListener('click', function(){
+  });
+  
+//Click add a new item
+document.querySelector('.new-item button').addEventListener('click',function() {
     var itemName = document.querySelector('.new-item input').value;
     if(itemName != '') {
-        var itemsStorage = localStorage.getItem('todo-items');
-        var itemsArr = JSON.parse(itemsStorage);
-        itemsArr.push({"item":itemName, "status": 0});
-        saveItems(itemsArr);
-        fetchItems();
+      var itemsStorage = localStorage.getItem('todo-items');
+      var itemsArr = JSON.parse(itemsStorage);
+      itemsArr.push({"item":itemName, "status":0});
+      saveItems(itemsArr);
+      fetchItems();
+      document.querySelector('.new-item input').value='';
+      document.querySelector('.new-item').style.display='none';
     }
-});
-
-
-
-var completeItems = 0;
-var countItems = 0;
-//Get item from local storage
+  });
+  
 function fetchItems() {
     const itemsList = document.querySelector('ul.todo-items');
     itemsList.innerHTML = '';
     var newItemHTML = '';
     try{
-        var itemsStorage = localStorage.getItem('todo-items');
-        var itemsArr = JSON.parse(itemsStorage);
-
-        for (var i = 0; i < itemsArr.length; i++) {
-            var status = '';
-            if(itemsArr[i].status == 1) {
-                status = 'class="done"';
-            }
-            newItemHTML += `<li data-itemindex="${i}" ${status}>
-            <span class="item">${itemsArr[i].item}</span>
-            <div><span class="itemComplete">&#10004;&#65039;</span><span class="itemDelete">&#128465;</span></div>
-            </li>`;
+      var itemsStorage = localStorage.getItem('todo-items');
+      var itemsArr = JSON.parse(itemsStorage);
+  
+      for (var i = 0; i < itemsArr.length; i++) {
+        var status = '';
+        if(itemsArr[i].status == 1) {
+          status = 'class="done"';
         }
-        itemsList.innerHTML = newItemHTML;
-        var itemsListUL = document.querySelectorAll('ul li');
-        for (var i = 0; i < itemsListUL.length; i++) {
-            itemsListUL[i].querySelector('.itemComplete').addEventListener('click', function() {
-                var index = this.parentNode.parentNode.dataset.itemindex;
-                itemComplete(index);
-            });
-            itemsListUL[i].querySelector('.itemDelete').addEventListener('click', function() {
-                var index = this.parentNode.parentNode.dataset.itemindex;
-                itemDelete(index);
-            });
-        }
-    } catch(e) {
-
+        newItemHTML += `<li data-itemindex="${i}" ${status}>
+        <span class="item">${itemsArr[i].item}</span>
+        <div><span class="itemComplete">✅</span><span class="itemDelete">🗑</span></div>
+        </li>`;
+      }
+  
+      itemsList.innerHTML = newItemHTML;
+  
+      var itemsListUL = document.querySelectorAll('ul li');
+      for (var i = 0; i < itemsListUL.length; i++) {
+        itemsListUL[i].querySelector('.itemComplete').addEventListener('click', function(){
+          var index = this.parentNode.parentNode.dataset.itemindex;
+          itemComplete(index);
+        });
+        itemsListUL[i].querySelector('.itemDelete').addEventListener('click', function(){
+          var index = this.parentNode.parentNode.dataset.itemindex;
+          itemDelete(index);
+        });
+      }
+    }catch(e){
+      //Any default item list
     }
-}
-
+  
+  }
+  
+//Checking off a task
 function itemComplete(index) {
-    var itemsStorage = localStorage.getItem('todo-items');
-    var itemsArr = JSON.parse(itemsStorage);
-    itemsArr[index].status = 1;
-    saveItems(itemsArr);
-    document.querySelector('ul.todo-items li[data-itemindex="'+index+'"]').className='done';
-}
+      var itemsStorage = localStorage.getItem('todo-items');
+      var itemsArr = JSON.parse(itemsStorage);
+      itemsArr[index].status = 1;
+      saveItems(itemsArr);
+      document.querySelector('ul.todo-items li[data-itemindex="'+index+'"]').className='done';
+  }
 
+//Deleting a task
 function itemDelete(index) {
     var itemsStorage = localStorage.getItem('todo-items');
     var itemsArr = JSON.parse(itemsStorage);
@@ -74,24 +75,16 @@ function itemDelete(index) {
     saveItems(itemsArr);
     document.querySelector('ul.todo-items li[data-itemindex="'+index+'"]').remove();
 }
-
-//Store item in local storage
+  
+//Save item in local storage
 function saveItems(obj) {
     var string = JSON.stringify(obj);
     localStorage.setItem('todo-items', string);
 }
+  
+fetchItems();
 
 
-
-
-
-
-
-
-
-
-
-/*
 // SOCIAL MEDIA BLOCKER
 
 const generateHTML = (pageName) => {
@@ -190,4 +183,3 @@ switch (window.location.hostname) {
         document.body.innerHTML = generateHTML("Discord");
         break;
 }
-*/
