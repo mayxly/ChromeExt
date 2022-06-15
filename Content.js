@@ -53,10 +53,11 @@ function fetchItems() {
         });
       }
     }catch(e){
-      //Any default item list
+      
     }
   
   }
+  
   
 //Checking off a task
 function itemComplete(index) {
@@ -82,11 +83,10 @@ function saveItems(obj) {
     localStorage.setItem('todo-items', string);
 }
   
+
 fetchItems();
 
-
 // SOCIAL MEDIA BLOCKER
-
 const generateHTML = (pageName) => {
     return `
     <div class="error">
@@ -142,6 +142,7 @@ const generateSTYLES = () => {
     `;
 };
 
+// Social Media Hosts to Block
 switch (window.location.hostname) {
     case "www.facebook.com":
         document.head.innerHTML= generateSTYLES();

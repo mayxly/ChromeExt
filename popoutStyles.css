@@ -32,3 +32,16 @@ h4 {
 .new-item {
     display: none;
 }
+button {
+    background: #38B6FF;
+    color: white;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: small;
+    box-shadow: 1px 1px rgb(20, 20, 20);
+}
+button:hover {
+    cursor: pointer;
+}
